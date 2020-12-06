@@ -1,0 +1,33 @@
+.modal-content h1, h2, h3, h4, h5, h6, p{
+    font-family: "Open Sans", sans-serif;
+}
+.modal-content h4{
+    color: #ff5821;
+}
+.modal-content p{
+    color: #666666;
+}
+ .btntb{
+     background-color: rgba(0, 0, 0, 0);
+     transform: 1s;
+     border-radius: 6px ;
+     color: #ff5821;
+     border-color: #ff5821;
+ }
+ .btntb:hover{
+     background-color: #ff5821;
+     color: #fff;
+     border-color: rgba(0, 0, 0, 0);
+ }
+ .dataTables_filter {
+    width: 50%;
+    float: right;
+    text-align: right;
+ } 
+
+ .ddtf-processed th.option-item > select{
+	display:none;
+}
+.ddtf-processed th.option-item > div{
+	display:block !important;
+}
