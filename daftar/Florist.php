@@ -64,7 +64,7 @@ include '../koneksi.php';
 
             <div class="container pendaftaran" id="pendaftaran">
                 <h3 class="text-center">Daftar Florist</h3>
-                <form method="POST">
+                <form action="dbFlorist.php" method="POST">
                     <div class="form-group">
                         <label>Nama Florist</label>
                         <input class="form-control" name="nama_florist" />
@@ -103,13 +103,39 @@ include '../koneksi.php';
                         <label>AC Bank Florist</label>
                         <input class="form-control" name="ac_bank_florist" />
                     </div>
+                    <div hidden="true" class="form-group">
+                        <label>Status</label>
+                        <select class="form-control" name="status" id="exampleFormControlSelect1">
+                            <option value="Tidak Aktif">Tidak Aktif</option>
+                        </select>
+                    </div>
                     <div>
                         <input type="checkbox" id="chkddl" onclick="Enabled(this)" />
                         <label for="chkddl">Saya menyetujui semua <a href="peraturan/peraturan_florist.php">peraturan dan kondisi</a></label>
                     </div>
                     <div class="float-right">
-                        <button type="submit" class="button" id="ddl" disabled="disabled">Daftarkan</button>
+                        <button type="button" class="button" data-toggle="modal" data-target="#myModal" id="ddl" disabled="disabled">Daftarkan</button>
                     </div>
+
+                    <!-- Modal -->
+                    <div id="myModal" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h6>Data Sudah Benar ?</h6>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-default" >Oke</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
                     <script>
                         function Enabled(chkddl) {
                             var ddl = document.getElementById("ddl");
@@ -122,35 +148,9 @@ include '../koneksi.php';
             </div>
             </form>
         </div>
-        </div>
 
 
     </main><!-- End #main -->
-
-
-    <?php
-
-    $id_kota = @$_POST['id_kota'];
-    $nama_florist = @$_POST['nama_florist'];
-    $alamat_florist = @$_POST['alamat_florist'];
-    $wa_florist = @$_POST['wa_florist'];
-    $bank_florist = @$_POST['bank_florist'];
-    $ac_bank_florist = @$_POST['ac_bank_florist'];
-    $simpan = @$_POST['simpan'];
-    if ($simpan) {
-        $sql = $koneksi->query("insert into tb_mflorist (id_kota,nama_florist,alamat_florist,wa_florist,bank_florist,ac_bank_florist)
-	  values( '$id_kota', '$nama_florist', '$alamat_florist', '$wa_florist', '$bank_florist', '$ac_bank_florist')");
-        if ($sql) {
-    ?>
-            <script type="text/javascript">
-                alert("Florist Berhasil didaftarkan. menunggu validasi dari Kabarduka.com");
-                window.location.href = "";
-            </script>
-    <?php
-        }
-    }
-    ?>
-
     <?php include 'footer.php'; ?>
     <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
 
@@ -164,6 +164,8 @@ include '../koneksi.php';
     <script src="../assets/vendor/owl.carousel/owl.carousel.min.js"></script>
     <script src="../assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
     <script src="../assets/vendor/aos/aos.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
     <!-- Template Main JS File -->
     <script src="../assets/js/main.js"></script>

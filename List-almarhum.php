@@ -111,7 +111,7 @@ include 'koneksi.php';
                                         <h6>Upacara Kematian</h6>
                                         <p><?php echo $row['upacara_kematian'] ?></p>
 
-                                        <a class="button btn-solid-reg" style="float: right;" href="daftar/kirim-bunga.php">Kirim Bunga</a>
+                                        <a class="button btn-solid-reg" style="float: right;" href="daftar/kirim-bunga/kirim-bunga.php">Kirim Bunga</a>
                                     </div> <!-- end of col -->
                                 </div> <!-- end of row -->
                             </div> <!-- end of lightbox-basic -->

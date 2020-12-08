@@ -63,7 +63,7 @@ include '../koneksi.php';
 
             <div class="container pendaftaran" id="pendaftaran">
                 <h3 class="text-center">Daftar Rumah Duka</h3>
-                <form method="POST">
+                <form action="dbRumahDuka.php" method="POST">
 
                     <div class="form-group">
                         <label>Nama Rumah Duka</label>
@@ -106,8 +106,29 @@ include '../koneksi.php';
                         <label for="chkddl">Saya menyetujui semua <a href="peraturan/peraturan_rumahduka.php">peraturan dan kondisi</a></label>
                     </div>
                     <div class="float-right">
-                        <button type="submit" class="button" id="ddl" disabled="disabled">Daftarkan</button>
+                        <button type="button" class="button" data-toggle="modal" data-target="#myModal" id="ddl" disabled="disabled">Daftarkan</button>
                     </div>
+
+                    <!-- Modal -->
+                    <div id="myModal" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+
+                                <div class="modal-body">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h6>Data Sudah Benar ?</h6>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-default">Oke</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
                     <script>
                         function Enabled(chkddl) {
                             var ddl = document.getElementById("ddl");
@@ -117,35 +138,12 @@ include '../koneksi.php';
                             }
                         }
                     </script>
+                </form>
             </div>
-            </form>
         </div>
-        </div>
-
 
     </main><!-- End #main -->
 
-    <?php
-    $id_rumah_duka = @$_POST['id_rumah_duka'];
-    $id_kota = @$_POST['id_kota'];
-    $nama_rumah_duka = @$_POST['nama_rumah_duka'];
-    $alamat_rumah_duka = @$_POST['alamat_rumah_duka'];
-    $telp_rumah_duka = @$_POST['telp_rumah_duka'];
-    $wa_rumah_duka = @$_POST['wa_rumah_duka'];
-    $simpan = @$_POST['simpan'];
-    if ($simpan) {
-        $sql = $koneksi->query("insert into tb_mrumah_duka (id_rumah_duka,id_kota,nama_rumah_duka,alamat_rumah_duka,telp_rumah_duka,wa_rumah_duka)
-	  values('$id_rumah_duka', '$id_kota', '$nama_rumah_duka', '$alamat_rumah_duka', '$telp_rumah_duka', '$wa_rumah_duka')");
-        if ($sql) {
-    ?>
-            <script type="text/javascript">
-                alert("Rumah Duka berhasil didaftarkan. menunggu validasi dari KabarDuka.com");
-                window.location.href = "";
-            </script>
-    <?php
-        }
-    }
-    ?>
     <?php include 'footer.php'; ?>
 
     <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
@@ -160,6 +158,8 @@ include '../koneksi.php';
     <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
     <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
     <script src="assets/vendor/aos/aos.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>

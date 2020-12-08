@@ -64,7 +64,7 @@ include '../koneksi.php';
 
             <div class="container pendaftaran" id="pendaftaran">
                 <h3 class="text-center">Daftar Kabar Duka</h3>
-                <form method="post" enctype="multipart/form-data">
+                <form action="dbKabarDuka.php" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label>Rumah Duka</label>
                         <select class="form-control" name="id_rumah_duka" id="exampleFormControlSelect1">
@@ -73,15 +73,19 @@ include '../koneksi.php';
                             $sqlx = "select * from tb_mrumah_duka";
 
                             $hasilx = mysqli_query($koneksi, $sqlx);
-                            
+
                             while ($tampilx = mysqli_fetch_array($hasilx)) {
-                                
+
                             ?>
                                 <option value="<?php echo $tampilx['id_rumah_duka']; ?>"><?php echo $tampilx['id_rumah_duka'], " - ", $tampilx['nama_rumah_duka']; ?></option>
                             <?php
                             }
                             ?>
                         </select>
+                    </div>
+                    <div class="form-group" hidden>
+                        <label>ID Almarhum</label>
+                        <input type="text" class="form-control" name="id_almarhum">
                     </div>
                     <label>Nama Almarhum</label>
                     <div class="form-group">
@@ -123,8 +127,30 @@ include '../koneksi.php';
                         <label for="chkddl">Saya menyetujui semua <a href="peraturan/Peraturan_kabarduka.php">peraturan dan kondisi</a></label>
                     </div>
                     <div class="float-right">
-                        <button type="sbmt" class="button" id="ddl" disabled="disabled">Daftarkan</button>
+                        <button type="button" data-toggle="modal" data-target="#myModal" class="button" id="ddl" disabled="disabled">Daftarkan</button>
                     </div>
+
+                    
+                    <!-- Modal -->
+                    <div id="myModal" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h6>Data Sudah Benar ?</h6>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-default" >Oke</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
                     <script>
                         function Enabled(chkddl) {
                             var ddl = document.getElementById("ddl");
@@ -141,49 +167,6 @@ include '../koneksi.php';
 
     </main><!-- End #main -->
 
-    <?php
-    // Include the database configuration file   
-    // If file upload form is submitted
-    $status = $statusMsg = '';
-    if (isset($_POST["sbmt"])) {
-        $status = 'error';
-        if (!empty($_FILES["foto"]["name"])) {
-            // Get file info 
-            $fileName = basename($_FILES["foto"]["name"]);
-            $fileType = pathinfo($fileName, PATHINFO_EXTENSION);
-
-            // Allow certain file formats 
-            $allowTypes = array('jpg', 'png', 'jpeg', 'gif');
-            if (in_array($fileType, $allowTypes)) {
-
-                $idrumahduka = $_POST['id_rumah_duka'];
-                $nama = $_POST['nama_almarhum'];
-                $image = $_FILES['foto']['tmp_name'];
-                $imgContent = addslashes(file_get_contents($image));
-                $lahir = $_POST['tanggal_lahir'];
-                $kematian = $_POST['tanggal_kematian'];
-                $alamat = $_POST['alamat'];
-                $kontak = $_POST['kontak_keluarga'];
-                $upacara = $_POST['upacara_kematian'];
-                $sts = $_POST['status'];
-
-                // Insert image content into database 
-                $insert = $koneksi->query("INSERT into tb_almarhum VALUES ('$idalmarhum','$idrumahduka','$nama','$imgContent','$lahir','$kematian','$alamat','$kontak','$upacara','$sts')");
-
-                if ($insert) { ?>
-                    <script type="text/javascript">
-                        alert("Data Berhasil Disimpan");
-                        window.location.href = "../index.php";
-                    </script>
-
-    <?php
-                }
-            }
-        }
-    }
-    // Display status message 
-    echo $statusMsg;
-    ?>
     <?php include 'footer.php'; ?>
 
     <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
@@ -198,6 +181,8 @@ include '../koneksi.php';
     <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
     <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
     <script src="assets/vendor/aos/aos.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>

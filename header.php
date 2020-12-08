@@ -13,7 +13,7 @@
         <ul>
           <li><a href="index.php">Home</a></li>
           <li><a href="About-us.php">About Us</a></li>
-          <li><a href="daftar/kirim-bunga.php">Kirim Bunga</a></li>
+          <li><a href="daftar/kirim-bunga/kirim-bunga.php">Kirim Bunga</a></li>
           <li><a href="Rumah-duka.php">Rumah Duka</a></li>
           <li><a href="Kerja-sama.php">Kerja Sama</a></li>
           <li><a href="FAQ.php">FAQ</a></li>

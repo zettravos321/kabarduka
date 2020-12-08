@@ -1,5 +1,5 @@
 <?php
-	include '../koneksi.php';
+	include '../../koneksi.php';
  
 	echo "<option value=''>Pilih Kota</option>";
  

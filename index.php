@@ -150,7 +150,7 @@ include 'koneksi.php';
             </div>
 
             <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
-              <a href="daftar/Kirim-bunga.php">
+              <a href="daftar/kirim-bunga/kirim-bunga.php">
                 <div class="icon"><i class="bx bx-paper-plane"></i></div>
                 <h4 class="title">Kirim Bunga Tanda Duka Cita
               </a></h4>
